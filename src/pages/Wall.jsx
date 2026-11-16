@@ -11,7 +11,7 @@ import { isConfigured } from '../lib/supabase'
 const PREFIX = 'Men Özbekiston bilan faxrlanaman, çunki'
 const MAX = 300
 const MIN = 10
-const PAGE = 12
+const PAGE = 10
 const LINK_RE = /(https?:\/\/|www\.|t\.me\/|@[a-z0-9_]{4,}|\+?\d[\d \-()]{8,}\d)/i
 
 function PrideForm() {
@@ -140,17 +140,18 @@ function WallList() {
   const [total, setTotal] = useState(0)
   const [status, setStatus] = useState('loading')
   const [error, setError] = useState(null)
-  const [more, setMore] = useState(false)
+  const [page, setPage] = useState(0)
   const req = useRef(0)
+  const top = useRef(null)
+  const pages = Math.max(1, Math.ceil(total / PAGE))
 
-  const load = (from, reset) => {
+  const load = (p) => {
     const id = ++req.current
-    if (reset) setStatus('loading')
-    else setMore(true)
-    fetchWall({ region, from, size: PAGE })
+    setStatus('loading')
+    fetchWall({ region, from: p * PAGE, size: PAGE })
       .then((res) => {
         if (id !== req.current) return
-        setItems((prev) => (reset ? res.items : [...prev, ...res.items]))
+        setItems(res.items)
         setTotal(res.total)
         setStatus('ready')
       })
@@ -159,17 +160,36 @@ function WallList() {
         setError(e)
         setStatus('error')
       })
-      .finally(() => id === req.current && setMore(false))
+  }
+
+  const go = (p) => {
+    setPage(p)
+    top.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
   useEffect(() => {
-    load(0, true)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    setPage(0)
   }, [region])
+
+  useEffect(() => {
+    load(page)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [region, page])
+
+  const pageList = (() => {
+    const set = new Set([0, pages - 1, page - 1, page, page + 1])
+    const arr = [...set].filter((n) => n >= 0 && n < pages).sort((a, b) => a - b)
+    const out = []
+    arr.forEach((n, i) => {
+      if (i > 0 && n - arr[i - 1] > 1) out.push('gap' + n)
+      out.push(n)
+    })
+    return out
+  })()
 
   return (
     <div>
-      <div className="flex flex-wrap items-end justify-between gap-4">
+      <div ref={top} className="flex scroll-mt-24 flex-wrap items-end justify-between gap-4">
         <h2 className="text-4xl text-tun sm:text-5xl">Devordagi fikrlar</h2>
         <div className="w-full sm:w-72">
           <label htmlFor="w-filter" className="sr-only">Hudud böyiça saralaş</label>
@@ -179,7 +199,7 @@ function WallList() {
 
       <div className="mt-10">
         {status === 'loading' && <Loading label="Fikrlar yuklanmoqda" />}
-        {status === 'error' && <ErrorState error={error} onRetry={() => load(0, true)} />}
+        {status === 'error' && <ErrorState error={error} onRetry={() => load(page)} />}
         {status === 'ready' && items.length === 0 && (
           <EmptyState title={region ? 'Bu hududdan hali fikr yöq' : 'Devor hozirça böş'}>
             {region ? 'Boşqa hududni tanlang yoki şu hududdan birinçi fikrni siz yozing.' : 'Birinçi fikrni siz qoldiring — darhol şu yerda körinadi.'}
@@ -200,12 +220,30 @@ function WallList() {
                 </li>
               ))}
             </ul>
-            {items.length < total && (
-              <div className="mt-4 text-center">
-                <button type="button" className="btn-outline" disabled={more} onClick={() => load(items.length, false)}>
-                  {more ? 'Yuklanmoqda…' : 'Yana körsatiş'}
+            {pages > 1 && (
+              <nav className="mt-6 flex flex-wrap items-center justify-center gap-2" aria-label="Sahifalar">
+                <button type="button" className="btn-outline" disabled={page === 0} onClick={() => go(page - 1)}>
+                  Oldingi
                 </button>
-              </div>
+                {pageList.map((n) =>
+                  typeof n === 'string' ? (
+                    <span key={n} className="px-1 text-siyoh/50" aria-hidden="true">…</span>
+                  ) : (
+                    <button
+                      key={n}
+                      type="button"
+                      onClick={() => go(n)}
+                      aria-current={n === page ? 'page' : undefined}
+                      className={n === page ? 'btn-outline border-tun bg-tun text-white' : 'btn-outline'}
+                    >
+                      {n + 1}
+                    </button>
+                  ),
+                )}
+                <button type="button" className="btn-outline" disabled={page >= pages - 1} onClick={() => go(page + 1)}>
+                  Keyingi
+                </button>
+              </nav>
             )}
           </>
         )}
