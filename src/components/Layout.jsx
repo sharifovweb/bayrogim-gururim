@@ -149,7 +149,7 @@ function Footer() {
           </div>
           <div className="border-t-2 border-qizil bg-tun">
             <p className="wrap py-4 text-center font-display text-lg italic tracking-wide text-white sm:text-xl">
-              Uşbu platforma Farğona viloyati, Özbekiston tumani hokimligi tomonidan yaratildi.
+              Uşbu platforma Farğona viloyati, Özbekiston tumani hokimligi taşabbusi bilan tayyorlandi.
             </p>
           </div>
         </div>
