@@ -1,0 +1,92 @@
+@import '@fontsource/cormorant-garamond/500.css';
+@import '@fontsource/cormorant-garamond/600.css';
+@import '@fontsource/cormorant-garamond/700.css';
+@import '@fontsource-variable/onest';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-white font-sans text-siyoh antialiased;
+    font-feature-settings: 'ss01';
+  }
+  h1, h2, h3 {
+    @apply font-display font-semibold;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  /* Cormorant'da raqamlar sukut böyiça eski uslubda — tekis (lining) raqamlarga ötkazamiz */
+  .font-display,
+  h1, h2, h3 {
+    font-feature-settings: 'lnum';
+  }
+  :focus-visible {
+    outline: 3px solid #0099b5;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  ::selection {
+    background: #0099b5;
+    color: #fff;
+  }
+}
+
+@layer components {
+  .wrap {
+    @apply mx-auto w-full max-w-page px-5 sm:px-8;
+  }
+  /* Bayroqdagi qizil hoshiya — sahifa qismlari orasidagi yagona ajratgiç */
+  .hoshiya {
+    @apply h-[5px] w-full bg-qizil;
+  }
+  .naqsh {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.055' stroke-width='1'%3E%3Cpath d='M48 14 82 48 48 82 14 48Z'/%3E%3Cpath d='M24 24h48v48H24Z'/%3E%3Cpath d='M0 -34 34 0 0 34-34 0ZM96 -34 130 0 96 34 62 0ZM0 62 34 96 0 130-34 96ZM96 62 130 96 96 130 62 96Z'/%3E%3C/g%3E%3C/svg%3E");
+  }
+  .btn {
+    @apply inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full px-6 text-[15px] font-semibold transition-colors duration-150 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-light {
+    @apply btn bg-white text-tun hover:bg-qogoz;
+  }
+  .btn-primary {
+    @apply btn bg-tun text-white hover:bg-tun-700;
+  }
+  .btn-green {
+    @apply btn bg-ormon text-white hover:bg-ormon-900;
+  }
+  .btn-outline {
+    @apply btn border border-tun/25 bg-white text-tun hover:border-tun/60;
+  }
+  .btn-outline-light {
+    @apply btn border border-white/35 text-white hover:border-white hover:bg-white/10;
+  }
+  .field {
+    @apply block min-h-[48px] w-full rounded-xl border border-siyoh/20 bg-white px-4 py-3 text-base text-siyoh placeholder:text-siyoh/40 focus:border-moviy focus:outline-none focus:ring-2 focus:ring-moviy/30;
+  }
+  .label {
+    @apply mb-1.5 block text-sm font-medium text-siyoh/80;
+  }
+  .lead {
+    @apply text-lg leading-relaxed text-siyoh/75;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
