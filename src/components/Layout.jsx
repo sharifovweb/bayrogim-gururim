@@ -147,7 +147,11 @@ function Footer() {
             <p>1991-yil 18-noyabr — 2026-yil 18-noyabr</p>
             <p>Bayroq ölçamlari va ramzlari Qonun matni asosida berilgan</p>
           </div>
-          <p className="wrap pb-5 text-sm text-white/65">Uşbu platforma Farğona viloyati. Özbekiston tumani hokimligi tomonidan yaratildi.</p>
+          <div className="border-t-2 border-qizil bg-tun">
+            <p className="wrap py-4 text-center font-display text-lg italic tracking-wide text-white sm:text-xl">
+              Uşbu platforma Farğona viloyati, Özbekiston tumani hokimligi tomonidan yaratildi.
+            </p>
+          </div>
         </div>
       </div>
     </footer>
