@@ -138,7 +138,7 @@ function Footer() {
           <div>
             <p className="font-semibold">Maxfiylik</p>
             <p className="mt-3 text-white/75">
-              Viktorina va karta uçun kiritilgan ism serverga yuborilmaydi. Faxr devoriga faqat özingiz yozgan ism, hudud va fikr saqlanadi hamda moderator tasdiğidan söng körsatiladi.
+              Viktorina va karta uçun kiritilgan ism serverga yuborilmaydi. Faxr devoriga faqat özingiz yozgan ism, hudud va fikr saqlanadi hamda ommaga körsatiladi.
             </p>
           </div>
         </div>

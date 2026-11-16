@@ -35,7 +35,7 @@ const WAYS = [
   {
     to: '/faxr-devori',
     title: 'Raqamli faxr devori',
-    text: '«Men Özbekiston bilan faxrlanaman, çunki…» jumlasini davom ettiring. Fikringiz moderator tasdiğidan söng devorda körinadi.',
+    text: '«Men Özbekiston bilan faxrlanaman, çunki…» jumlasini davom ettiring. Fikringiz darhol devorda körinadi.',
     cta: 'Fikr qoldiriş',
     bar: 'bg-yaşil',
   },

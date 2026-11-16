@@ -10,7 +10,7 @@ export function StatsView({ data }) {
     { n: data.participants, label: 'Iştirokçilar', hint: 'kamida bitta amal bajargan qurilmalar' },
     { n: data.quiz_attempts, label: 'Viktorina urinişlari', hint: data.quiz_attempts ? `örtaça ball: ${String(data.quiz_average ?? 0).replace('.', ',')} / 15` : 'hali topşirilmagan' },
     { n: data.cards, label: 'Yaratilgan kartalar', hint: 'yuklab olingan yoki ulaşilgan' },
-    { n: data.messages, label: 'Devordagi fikrlar', hint: 'moderator tasdiqlagan' },
+    { n: data.messages, label: 'Devordagi fikrlar', hint: 'devorda e’lon qilingan' },
   ]
 
   const dist = data.distribution || []

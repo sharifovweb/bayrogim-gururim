@@ -12,7 +12,7 @@ const MESSAGES = {
   not_configured: 'Ma’lumotlar bazasi hali ulanmagan. Administrator Supabase sozlamalarini kiritişi kerak.',
   rate_limit: 'Juda köp uriniş böldi. Birozdan keyin qayta urinib köring.',
   blocked_content: 'Matnda havola, telefon raqami yoki reklama belgilari bor. Ularni olib taşlab, qayta yuboring.',
-  duplicate: 'Bu fikrni avval yuborgansiz. U moderator körigida.',
+  duplicate: 'Bu fikrni avval yuborgansiz.',
   wall_closed: 'Hozirça fikr qabul qiliş töxtatilgan.',
   forbidden: 'Bu amal uçun administrator huquqi kerak.',
   network: 'Internet aloqasi uzildi. Ulanişni tekşirib, qayta urinib köring.',

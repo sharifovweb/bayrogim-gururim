@@ -74,7 +74,7 @@ function PrideForm() {
     return (
       <div className="space-y-4">
         <Notice tone="success">
-          Fikringiz moderatorga yuborildi. Tasdiqlangaç devorda körinadi.
+          Fikringiz qabul qilindi va devorda körinadi.
         </Notice>
         <button type="button" className="btn-outline" onClick={() => { setState('idle'); openedAt.current = Date.now() }}>
           Yana fikr yoziş
@@ -122,7 +122,7 @@ function PrideForm() {
 
       <label className="flex cursor-pointer items-start gap-3 text-[15px] text-siyoh/80">
         <input type="checkbox" className="mt-0.5 h-5 w-5 shrink-0 accent-[#0B5D2A]" checked={consent} onChange={(e) => setConsent(e.target.checked)} />
-        <span>Ismim, hududim va fikrim moderator tasdiğidan söng ommaga körsatilişiga roziman.</span>
+        <span>Ismim, hududim va fikrim ommaga körsatilişiga roziman.</span>
       </label>
 
       {error && <Notice tone="error">{error}</Notice>}
@@ -182,7 +182,7 @@ function WallList() {
         {status === 'error' && <ErrorState error={error} onRetry={() => load(0, true)} />}
         {status === 'ready' && items.length === 0 && (
           <EmptyState title={region ? 'Bu hududdan hali fikr yöq' : 'Devor hozirça böş'}>
-            {region ? 'Boşqa hududni tanlang yoki şu hududdan birinçi fikrni siz yozing.' : 'Birinçi fikrni siz qoldiring — tasdiqlangaç şu yerda körinadi.'}
+            {region ? 'Boşqa hududni tanlang yoki şu hududdan birinçi fikrni siz yozing.' : 'Birinçi fikrni siz qoldiring — darhol şu yerda körinadi.'}
           </EmptyState>
         )}
         {status === 'ready' && items.length > 0 && (
@@ -225,7 +225,7 @@ export default function Wall() {
         <div>
           <h2 className="text-3xl text-tun sm:text-4xl">Fikringizni qoldiring</h2>
           <p className="mt-4 text-siyoh/70">
-            Har bir fikr moderator tomonidan körib çiqiladi. Havola, reklama va haqoratli sözlar bölgan matnlar e’lon qilinmaydi.
+            Havola, reklama va haqoratli sözlar bölgan matnlar e’lon qilinmaydi.
           </p>
         </div>
         <PrideForm />
