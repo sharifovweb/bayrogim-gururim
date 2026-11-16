@@ -9,7 +9,7 @@ import { cleanName, getProfile, saveProfile } from '../lib/session'
 import { isConfigured } from '../lib/supabase'
 
 const PREFIX = 'Men Özbekiston bilan faxrlanaman, çunki'
-const MAX = 240
+const MAX = 300
 const MIN = 10
 const PAGE = 12
 const LINK_RE = /(https?:\/\/|www\.|t\.me\/|@[a-z0-9_]{4,}|\+?\d[\d \-()]{8,}\d)/i
@@ -68,7 +68,7 @@ function PrideForm() {
     return <Notice>Fikr qabul qiliş ma’lumotlar bazasi ulangaç işga tuşadi.</Notice>
   }
   if (!open) {
-    return <Notice>Hozirça fikr qabul qiliş töxtatilgan. Tasdiqlangan fikrlarni quyida öqişingiz mumkin.</Notice>
+    return <Notice>Hozirça fikr qabul qiliş töxtatilgan. Fikrlarni quyida öqişingiz mumkin.</Notice>
   }
   if (state === 'done') {
     return (
